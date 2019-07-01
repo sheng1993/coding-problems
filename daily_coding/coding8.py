@@ -1,15 +1,16 @@
-import os,sys,inspect
+from utils.models.trees import Node
+
+import os, sys, inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
-sys.path.insert(0,parentdir) 
-
-from utils.models import Node
+sys.path.insert(0, parentdir) 
 
 # This problem was asked by Google.
 
 # A unival tree (which stands for "universal value") is a tree where all nodes under it have the same value.
 
 # Given the root to a binary tree, count the number of unival subtrees.
+
 
 def count_unival_subtrees(root: Node):
     if not root:
@@ -69,5 +70,4 @@ root.right = Node(5)
 root.right.right = Node(5)
 
 assert count_unival_subtrees(root) == 5
-
 

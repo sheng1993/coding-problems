@@ -1,6 +1,6 @@
 # Longest Increasing Subsequence
 
-def lis(arr): 
+def lis_dp(arr): 
     n = len(arr) 
   
     # Declare the list (array) for LIS and initialize LIS 
@@ -25,4 +25,4 @@ def lis(arr):
 
 
 arr = [10, 22, 9, 33, 21, 50, 41, 60] 
-print("Length of lis is", lis(arr))
+print("Length of lis is", lis_dp(arr))

@@ -1,28 +1,43 @@
-def split_chars(input):
-    return [char for char in input]
+#python 3.5.2
 
-# here's how you read an int as an input
-x = int(input())
-
-tests = []
-for _ in range(x):
-    _input = input()
-    try:
-        tests.append(list(map(int, split_chars(_input))))
-    except:
-        tests.append(None)
-
-
-def check_pesel(input):
-    if not input or len(input) != 11:
-        print('N')
+class Solution:
     
-    a,b,c,d,e,f,g,h,i,j,k = input
-    result = a + 3*b + 7*c + 9*d + e + 3*f + 7*g + 9*h + i + 3*j + k
-    if result % 10 == 0:
-        print('Y')
-    else:
-        print('N')
+    def numIslands(self, grid):
+        # your code here
+        x = [0 for _ in range(len(grid[0]))]
+        max_area = 0
+        for r in range(len(grid)):
+            for j in range(len(grid[0])):
+                x[j] += 1 if grid[r][j] == '1' else 0
+            min_h = -1
+            min_col = 1
+            for j in range(1, len(grid[0])):
+                if x[j] == 0:
+                    max_area = max(max_area, min_col * min_h)
+                    min_h = -1
+                else:
+                    if min_h == -1:
+                        min_h = x[j]
+                        min_col = 1
+                    else:
+                        min_h = min(min_h, x[j])
+                min_col += 1
+        return max_area
 
-for i in range(x):
-    check_pesel(tests[i])
+    
+def get_matrix():
+    row = int(input())
+    col = int(input())
+    grid = [["0"]*col]*row
+
+    for i in range(row):
+        line = input()
+        grid[i] = list(line)[0:col]
+    return grid
+
+        
+if __name__ == "__main__":
+    sol = Solution()
+    matrix = get_matrix()
+    islands = sol.numIslands(matrix)
+    print(islands)
